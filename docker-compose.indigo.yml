@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  # BETY rails frontend to the database
+  bety:
+    # build: . # to build after updating Dockerfile
+    # image: bety_local-bety_local:latest # or pecan/bety:latest to pull from dockerhub (?)
+    image: pecan/bety:${BRANCH:-latest}
+    networks:
+      - bety
+    ports:
+      - 8000
+    environment:
+      - UNICORN_WORKER_PROCESSES=1
+      - SECRET_KEY_BASE=thisisnotasecret
+      - PGUSER=bety
+      - PGOPTIONS=-c search_path=ecosystem_observation_app # This sets the schema to use for PostgreSQL queries
+      - PGDATABASE=postgres
+      - PGHOST=host.docker.internal
+      - PGPORT=5432 # 19840         # Ecosystem Observation App - Yggdrasil - Development
+    restart: unless-stopped
+
+networks:
+  bety:
+  

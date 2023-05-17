@@ -40,6 +40,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && useradd -m -u 1000 -s /bin/bash bety
 
+# make log writable
+RUN chown -R bety:bety /home/bety/log/
+RUN chmod -R 755 /home/bety/log/
+
 # change to working directory
 USER bety
 WORKDIR /home/bety
