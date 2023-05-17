@@ -16,10 +16,9 @@ services:
       - PGUSER=bety
       - PGOPTIONS=-c search_path=ecosystem_observation_app # This sets the schema to use for PostgreSQL queries
       - PGDATABASE=postgres
-      - PGHOST=localhost # OneDB
-      - PGPORT=19849     # OneDB Ecosystem Observation App - Yggdrasil - Development
-      - PGHOST=host.docker.internal # Docker
-      - PGHOST=5432                 # Docker
+      - PGHOST=host.docker.internal
+      - PGPORT=19840     # OneDB Ecosystem Observation App - Yggdrasil - Development
+#     - PGHOST=5432                 # Docker
     restart: unless-stopped
 
 networks:
